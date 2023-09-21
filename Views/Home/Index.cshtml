@@ -1,0 +1,17 @@
+﻿@using HowsGoingCore.Models;
+@using Microsoft.AspNetCore.Mvc;
+@using System.Data;
+@using System.Diagnostics;
+@using System.Web;
+@using Microsoft.AspNetCore.Http
+
+<div style="padding: 75px">
+    <h2>HOME :-D</h2>
+    <div style="padding: 25px">
+        Welcome, @Context.Session.GetString("username") ! Howsgoing is a project created by me to help you express yourself about anything you like! <br />
+        Hope to see you around :-)
+        <div style="display: flex; justify-content: flex-end">
+            <img src="~/howscat.png" />
+        </div>
+    </div>
+</div>

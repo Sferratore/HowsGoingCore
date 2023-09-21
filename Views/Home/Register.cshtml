@@ -1,0 +1,41 @@
+﻿<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+</head>
+
+
+<h3 style="align-content:center">Get into the family!</h3>
+
+<form asp-action="RegistrationCheck" asp-controller="Home" method="post" class="pure-form">
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" />
+    @if (ViewBag.usernameInvalid != null)
+    {
+        <div style="color: red">Username already taken :(</div>
+    }
+    <br />
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" />
+    <br />
+    <label for="email">Email</label>
+    <input type="text" id="email" name="email" />
+    @if (ViewBag.emailTaken != null)
+    {
+        <div style="color: red">Email already used.</div>
+    }
+    @if (ViewBag.emailNotRegex != null)
+    {
+        <div style="color: red">Email invalid.</div>
+    }
+    <br /><br />
+    <input type="submit" value="Register">
+
+    @if (ViewBag.nullValues != null)
+    {
+        <div style="color: red">There are one ore more empty fields: please fill them all</div>
+    }
+
+    @if (ViewBag.registrationSuccess != null)
+    {
+        <div style="color: green">Your registration was successfull!</div>
+    }
+</form>

@@ -1,0 +1,26 @@
+﻿<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+</head>
+
+<h3 style="align-content:center">Login</h3>
+
+<form asp-action="LoginCheck" asp-controller="Home" method="post" class="pure-form">
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" />
+    <br />
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" />
+    <br />
+    <input type="submit" value="Login" class="pure-button pure-button-primary">
+</form>
+
+
+<br />
+<br />
+<a style="display: flex; justify-content: flex-end; text-decoration: none" asp-area="" asp-controller="Home" asp-action="Register"> Haven't got an account? Register now! >_></a>
+
+
+@if (ViewBag.loginFailed != null)
+{
+    <div style="color: red">Login credentials are not correct.</div>
+}

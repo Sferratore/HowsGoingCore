@@ -1,0 +1,100 @@
+﻿<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+</head>
+
+
+
+<h3 style="align-content:center">Friends</h3>
+
+<form asp-action="FriendSearch" asp-controller="Home" class="pure-form pure-form-stacked" method="post">
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" />
+    <br />
+    <input type="submit" value="Find a friend!" class="pure-button pure-button-primary">
+</form>
+
+<br />
+<br />
+
+
+@if (ViewBag.userSearched != null)
+{
+    <h4>Results:</h4>
+    <div style="padding: 40px">
+        <table class="pure-table-striped">
+            <tr>
+                <th>Username</th>
+                <th>Add?</th>
+            </tr>
+            <tr>
+                <td>@ViewBag.userSearched.Username</td>
+                <td>
+                    <form asp-action="SendFriendRequest" asp-controller="Home" method="post">
+                        <input type="submit" name="Add!" value="Add!" class="pure-button pure-button-primary">
+                        <input type="text" name="usertoadd" value="@ViewBag.userSearched.Username" style="display: none">
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+}
+
+@if (ViewBag.operationFeedback != null)
+{
+    <div style="color: red">@ViewBag.operationFeedback</div>
+}
+
+
+
+
+@if (ViewBag.friendreqs != null)
+{
+    <h4>Results:</h4>
+    <div style="padding: 40px">
+        <table class="pure-table-striped">
+            <tr>
+                <th>Username</th>
+                <th>Add?</th>
+            </tr>
+            @foreach (var req in ViewBag.friendreqs)
+            {
+                <tr>
+                    <td>@req.REQUESTER</td>
+                    <td>
+                        <form asp-action="ConfirmRequest" asp-controller="Home" method="post">
+                            <input type="submit" name="Add!" value="Add!" class="pure-button pure-button-primary">
+                            <input type="text" name="usertoadd" value="@req.REQUESTER" style="display: none">
+                        </form>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+}
+
+
+
+
+
+
+
+<h4>Your friends:</h4>
+<div style="padding: 25px">
+    <table class="pure-table-striped">
+        <tr>
+            <th>Username</th>
+        </tr>
+        @foreach (var friend in ViewBag.friends)
+        {
+            <tr>
+                <td>@friend.FRIEND</td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+
+
+<br />
+<br />
