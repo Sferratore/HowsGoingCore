@@ -30,19 +30,19 @@ public partial class howsgoingContext : DbContext
             entity.Property(e => e.FriendrequestId)
                 .ValueGeneratedNever()
                 .HasColumnName("FriendrequestID");
-            entity.Property(e => e.User1)
+            entity.Property(e => e.RequestReceiver)
                 .HasMaxLength(50)
                 .IsUnicode(false);
-            entity.Property(e => e.User2)
+            entity.Property(e => e.RequestSender)
                 .HasMaxLength(50)
                 .IsUnicode(false);
 
-            entity.HasOne(d => d.User1Navigation).WithMany(p => p.FriendrequestUser1Navigation)
-                .HasForeignKey(d => d.User1)
+            entity.HasOne(d => d.RequestReceiverNavigation).WithMany(p => p.FriendrequestRequestReceiverNavigation)
+                .HasForeignKey(d => d.RequestReceiver)
                 .HasConstraintName("FK__Friendreq__User1__2D27B809");
 
-            entity.HasOne(d => d.User2Navigation).WithMany(p => p.FriendrequestUser2Navigation)
-                .HasForeignKey(d => d.User2)
+            entity.HasOne(d => d.RequestSenderNavigation).WithMany(p => p.FriendrequestRequestSenderNavigation)
+                .HasForeignKey(d => d.RequestSender)
                 .HasConstraintName("FK__Friendreq__User2__2E1BDC42");
         });
 

@@ -1,30 +1,33 @@
-﻿@using HowsGoingCore.Controllers;
+﻿@*Homepage page*@
+
+@using HowsGoingCore.Controllers;
 @using HowsGoingCore.Models;
 @using Microsoft.AspNetCore.Mvc;
 @using System.Data;
 @using System.Diagnostics;
 
 
-
-
 <head>
+    @*Stylesheet import*@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
 </head>
 
 
 
 <h3 style="padding-top: 20px">
-    These are your logs:
+    This is what is going on lately:
 </h3>
 
 <div style="padding: 75px">
+    @*Table with posts*@
     <table class="pure-table-striped">
         <tr>
             <th>Message</th>
             <th>Satisfaction</th>
             <th>Author</th>
         </tr>
-        @foreach (var record in ViewBag.records)
+        @*loading records from ViewBag*@
+        @foreach (var record in ViewBag.recordsList)
         {
             <tr>
                 <td>@record.RecordContent</td>

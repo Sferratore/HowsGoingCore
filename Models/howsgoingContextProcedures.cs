@@ -34,7 +34,6 @@ namespace HowsGoingCore.Models
 
         protected void OnModelCreatingGeneratedProcedures(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<GetFriendRequestsResult>().HasNoKey().ToView(null);
             modelBuilder.Entity<GetFriendsResult>().HasNoKey().ToView(null);
             modelBuilder.Entity<GetRecordsResult>().HasNoKey().ToView(null);
         }
@@ -47,33 +46,6 @@ namespace HowsGoingCore.Models
         public howsgoingContextProcedures(howsgoingContext context)
         {
             _context = context;
-        }
-
-        public virtual async Task<List<GetFriendRequestsResult>> GetFriendRequestsAsync(string username, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default)
-        {
-            var parameterreturnValue = new SqlParameter
-            {
-                ParameterName = "returnValue",
-                Direction = System.Data.ParameterDirection.Output,
-                SqlDbType = System.Data.SqlDbType.Int,
-            };
-
-            var sqlParameters = new []
-            {
-                new SqlParameter
-                {
-                    ParameterName = "username",
-                    Size = 50,
-                    Value = username ?? Convert.DBNull,
-                    SqlDbType = System.Data.SqlDbType.VarChar,
-                },
-                parameterreturnValue,
-            };
-            var _ = await _context.SqlQueryAsync<GetFriendRequestsResult>("EXEC @returnValue = [dbo].[GetFriendRequests] @username", sqlParameters, cancellationToken);
-
-            returnValue?.SetValue(parameterreturnValue.Value);
-
-            return _;
         }
 
         public virtual async Task<List<GetFriendsResult>> GetFriendsAsync(string username, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default)

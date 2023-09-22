@@ -9,11 +9,11 @@ public partial class Friendrequest
 {
     public int FriendrequestId { get; set; }
 
-    public string User1 { get; set; }
+    public string RequestReceiver { get; set; }
 
-    public string User2 { get; set; }
+    public string RequestSender { get; set; }
 
-    public virtual HowsUser User1Navigation { get; set; }
+    public virtual HowsUser RequestReceiverNavigation { get; set; }
 
-    public virtual HowsUser User2Navigation { get; set; }
+    public virtual HowsUser RequestSenderNavigation { get; set; }
 }

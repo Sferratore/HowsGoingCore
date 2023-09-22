@@ -1,3 +1,4 @@
+//Object that describes application errors
 namespace HowsGoingCore.Models
 {
     public class ErrorViewModel

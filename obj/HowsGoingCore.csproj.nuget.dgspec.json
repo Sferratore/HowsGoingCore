@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\F.P.S\\Desktop\\HowsGoingCore\\HowsGoingCore\\HowsGoingCore.csproj": {}
+    "C:\\Users\\F.P.S\\Desktop\\HowsGoingCore\\HowsGoingCore.csproj": {}
   },
   "projects": {
-    "C:\\Users\\F.P.S\\Desktop\\HowsGoingCore\\HowsGoingCore\\HowsGoingCore.csproj": {
+    "C:\\Users\\F.P.S\\Desktop\\HowsGoingCore\\HowsGoingCore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\F.P.S\\Desktop\\HowsGoingCore\\HowsGoingCore\\HowsGoingCore.csproj",
+        "projectUniqueName": "C:\\Users\\F.P.S\\Desktop\\HowsGoingCore\\HowsGoingCore.csproj",
         "projectName": "HowsGoingCore",
-        "projectPath": "C:\\Users\\F.P.S\\Desktop\\HowsGoingCore\\HowsGoingCore\\HowsGoingCore.csproj",
+        "projectPath": "C:\\Users\\F.P.S\\Desktop\\HowsGoingCore\\HowsGoingCore.csproj",
         "packagesPath": "C:\\Users\\F.P.S\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\F.P.S\\Desktop\\HowsGoingCore\\HowsGoingCore\\obj\\",
+        "outputPath": "C:\\Users\\F.P.S\\Desktop\\HowsGoingCore\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\F.P.S\\AppData\\Roaming\\NuGet\\NuGet.Config",

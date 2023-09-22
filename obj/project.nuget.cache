@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZjuPWz2W2MOVO57Id/ToiJ8gQbW5f5hbeFIqoLT7TG3vRWoHhtqSMficmuik5QTNsB7LqPnMD5A9FWSUfchy+g==",
+  "dgSpecHash": "eE/6h5NNF+IajxM1M9BI+1R3+OHgcrSC86C1GibbDAm7RoNAeeeyFzx4imGH2uKKSbYT9c4CRK7z0U+KET9Pdg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\F.P.S\\Desktop\\HowsGoingCore\\HowsGoingCore\\HowsGoingCore.csproj",
+  "projectFilePath": "C:\\Users\\F.P.S\\Desktop\\HowsGoingCore\\HowsGoingCore.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\F.P.S\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\F.P.S\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

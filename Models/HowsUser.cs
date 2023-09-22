@@ -13,9 +13,9 @@ public partial class HowsUser
 
     public string Email { get; set; }
 
-    public virtual ICollection<Friendrequest> FriendrequestUser1Navigation { get; set; } = new List<Friendrequest>();
+    public virtual ICollection<Friendrequest> FriendrequestRequestReceiverNavigation { get; set; } = new List<Friendrequest>();
 
-    public virtual ICollection<Friendrequest> FriendrequestUser2Navigation { get; set; } = new List<Friendrequest>();
+    public virtual ICollection<Friendrequest> FriendrequestRequestSenderNavigation { get; set; } = new List<Friendrequest>();
 
     public virtual ICollection<Friendship> FriendshipUser1Navigation { get; set; } = new List<Friendship>();
 

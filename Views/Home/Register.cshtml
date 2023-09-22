@@ -1,23 +1,31 @@
 ﻿<head>
+    @*Stylesheet import*@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
 </head>
 
 
+@*Registration Form*@
 <h3 style="align-content:center">Get into the family!</h3>
 
-<form asp-action="RegistrationCheck" asp-controller="Home" method="post" class="pure-form">
-    <label for="username">Username</label>
-    <input type="text" id="username" name="username" />
+<form asp-action="RegistrationExecution" asp-controller="Home" method="post" class="pure-form">
+
+    @*Username section*@
+    <label for="registrationUsername">Username</label>
+    <input type="text" id="registrationUsername" name="registrationUsername" />
     @if (ViewBag.usernameInvalid != null)
     {
         <div style="color: red">Username already taken :(</div>
     }
     <br />
-    <label for="password">Password</label>
-    <input type="password" id="password" name="password" />
+
+    @*Password section*@
+    <label for="registrationPassword">Password</label>
+    <input type="password" id="registrationPassword" name="registrationPassword" />
     <br />
-    <label for="email">Email</label>
-    <input type="text" id="email" name="email" />
+
+    @*Email section*@
+    <label for="registrationEmail">Email</label>
+    <input type="text" id="registrationEmail" name="registrationEmail" />
     @if (ViewBag.emailTaken != null)
     {
         <div style="color: red">Email already used.</div>
@@ -27,8 +35,11 @@
         <div style="color: red">Email invalid.</div>
     }
     <br /><br />
+
+    @*Register button*@
     <input type="submit" value="Register">
 
+    @*General feedback*@
     @if (ViewBag.nullValues != null)
     {
         <div style="color: red">There are one ore more empty fields: please fill them all</div>
