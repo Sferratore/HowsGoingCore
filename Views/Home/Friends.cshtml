@@ -5,101 +5,117 @@
 </head>
 
 
+<div class="mainContent">
+    <h3 style="align-content:center">Friends</h3>
+    @*Friend search form. Send friend requests.*@
+    <form asp-action="FriendSearch" asp-controller="Home" class="pure-form pure-form-stacked" method="post">
+        <label for="inputUsername">Username</label>
+        <input type="text" id="inputUsername" name="inputUsername" />
+        <br />
+        <input type="submit" value="Find a friend!" class="btn btn-primary">
+    </form>
 
-<h3 style="align-content:center">Friends</h3>
-@*Friend search form. Send friend requests.*@
-<form asp-action="FriendSearch" asp-controller="Home" class="pure-form pure-form-stacked" method="post">
-    <label for="inputUsername">Username</label>
-    <input type="text" id="inputUsername" name="inputUsername" />
+
+
+
     <br />
-    <input type="submit" value="Find a friend!" class="pure-button pure-button-primary">
-</form>
+    <br />
+
+
+
+    @*Table with FriendSearch result*@
+    @if (ViewBag.userSearched != null)
+    {
+        <h4>Results:</h4>
+        <div style="padding: 4%">
+            <table class="table table-hover">
+                <thead>
+                    <tr class="table-primary">
+                        <th scope="col">Username</th>
+                        <th scope="col">Add?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@ViewBag.userSearched.Username</td>
+                        <td>
+                            <form asp-action="SendFriendRequest" asp-controller="Home" method="post">
+                                <input type="submit" name="Add!" value="Add!" class="pure-button pure-button-primary">
+                                <input type="text" name="usertoadd" value="@ViewBag.userSearched.Username" style="display: none">
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    }
 
 
 
 
-<br />
-<br />
 
 
+    @*Current friend requests sent to user*@
+    @if (ViewBag.friendReqs != null)
+    {
+        <h4>Friend Requests:</h4>
+        <div style="padding: 40px">
+            <table class="table table-hover">
+                <thead>
+                    <tr class="table-primary">
+                        <th scope="col">Username</th>
+                        <th scope="col">Add?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var req in ViewBag.friendReqs)
+                    {
+                        <tr>
+                            <td>@req.RequestSender</td>
+                            <td>
+                                <form asp-action="ConfirmRequest" asp-controller="Home" method="post">
+                                    <input type="submit" name="Add!" value="Add!" class="pure-button pure-button-primary">
+                                    <input type="text" name="usertoadd" value="@req.RequestSender" style="display: none">
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
 
-@*Table with FriendSearch result*@
-@if (ViewBag.userSearched != null)
-{
-    <h4>Results:</h4>
-    <div style="padding: 40px">
-        <table class="pure-table-striped">
-            <tr>
-                <th>Username</th>
-                <th>Add?</th>
-            </tr>
-            <tr>
-                <td>@ViewBag.userSearched.Username</td>
-                <td>
-                    <form asp-action="SendFriendRequest" asp-controller="Home" method="post">
-                        <input type="submit" name="Add!" value="Add!" class="pure-button pure-button-primary">
-                        <input type="text" name="usertoadd" value="@ViewBag.userSearched.Username" style="display: none">
-                    </form>
-                </td>
-            </tr>
-        </table>
-    </div>
-}
 
-
-
-
-@*Current friend requests sent to user*@
-@if (ViewBag.friendReqs != null)
-{
-    <h4>Results:</h4>
-    <div style="padding: 40px">
-        <table class="pure-table-striped">
-            <tr>
-                <th>Username</th>
-                <th>Add?</th>
-            </tr>
-            @foreach (var req in ViewBag.friendReqs)
-            {
-                <tr>
-                    <td>@req.RequestSender</td>
-                    <td>
-                        <form asp-action="ConfirmRequest" asp-controller="Home" method="post">
-                            <input type="submit" name="Add!" value="Add!" class="pure-button pure-button-primary">
-                            <input type="text" name="usertoadd" value="@req.RequestSender" style="display: none">
-                        </form>
-                    </td>
+    @*List of friends*@
+    <h4>Your friends:</h4>
+    <div style="padding: 25px">
+        <table class="table table-hover">
+            <thead>
+                <tr class="table-primary">
+                    <th scope="col">Friend's Username</th>
                 </tr>
-            }
+            </thead>
+            <tbody>
+                @foreach (var friend in ViewBag.friendList)
+                {
+                    <tr>
+                        <td>@friend.FRIEND</td>
+                    </tr>
+                }
+            </tbody> 
         </table>
     </div>
-}
 
 
-@*List of friends*@
-<h4>Your friends:</h4>
-<div style="padding: 25px">
-    <table class="pure-table-striped">
-        <tr>
-            <th>Username</th>
-        </tr>
-        @foreach (var friend in ViewBag.friendList)
-        {
-            <tr>
-                <td>@friend.FRIEND</td>
-            </tr>
-        }
-    </table>
+
+
+    <br />
+    <br />
+
+    @*Friend page operation feedback*@
+    @if (ViewBag.operationFeedback != null)
+    {
+        <div style="color: midnightblue">@ViewBag.operationFeedback</div>
+    }
+
 </div>
-
-
-
-
-<br />
-<br />
-
-@*Friend page operation feedback*@
-@if (ViewBag.operationFeedback != null)
-{
-    <div style="color: midnightblue">@ViewBag.operationFeedback</div>
-}

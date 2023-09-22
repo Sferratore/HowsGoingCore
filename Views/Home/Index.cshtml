@@ -5,13 +5,13 @@
 @using System.Web;
 @using Microsoft.AspNetCore.Http
 
-<div style="padding: 75px">
-    <h2>HOME :-D</h2>
+<div class="mainContent">
+    <h2>Welcome, @Context.Session.GetString("LoggedUser") !</h2>
     <div style="padding: 25px">
-        Welcome, @Context.Session.GetString("LoggedUser") ! Howsgoing is a project created by me to help you express yourself about anything you like! <br />
+        Howsgoing is a project created by me to help you express yourself about anything you like! <br />
         Hope to see you around :-)
         <div style="display: flex; justify-content: flex-end">
-            <img src="~/howscat.png" />
+            <img style="margin: 10%" src="~/howscat.png" />
         </div>
     </div>
 </div>

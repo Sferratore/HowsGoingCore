@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "g52PINQg1u1Jz+6J8i3f6geG3eIGoxWNgJaLlKG8+EA=",
+  "Hash": "AoS4Zv2SL2/H1dJy6XwnLj730r9IUMU8cWFCzzfwwfw=",
   "Source": "HowsGoingCore",
   "BasePath": "_content/HowsGoingCore",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\F.P.S\\Desktop\\HowsGoingCore\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\HowsGoingCore.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\F.P.S\\Desktop\\HowsGoingCore\\wwwroot\\css\\JournalThemeBootswatch.css",
+      "SourceId": "HowsGoingCore",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\F.P.S\\Desktop\\HowsGoingCore\\wwwroot\\",
+      "BasePath": "_content/HowsGoingCore",
+      "RelativePath": "css/JournalThemeBootswatch.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\JournalThemeBootswatch.css"
     },
     {
       "Identity": "C:\\Users\\F.P.S\\Desktop\\HowsGoingCore\\wwwroot\\css\\site.css",

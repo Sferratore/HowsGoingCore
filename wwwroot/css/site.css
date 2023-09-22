@@ -13,6 +13,25 @@ html {
   min-height: 100%;
 }
 
-body {
-  margin-bottom: 60px;
+.mainContent {
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 10%;
+}
+
+.whiteLink {
+    color: white; 
+    text-decoration: none; 
+}
+
+    .whiteLink:hover {
+        color: white;
+    }
+
+
+
+.right-align {
+
 }

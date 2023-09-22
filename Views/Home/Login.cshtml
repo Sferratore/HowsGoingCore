@@ -6,30 +6,37 @@
 </head>
 
 
+<div class="mainContent">
 
-@*Login Form*@
-<h3 style="align-content:center">Login</h3>
-
-<form asp-action="LoginExecution" asp-controller="Home" method="post" class="pure-form">
-    <label for="loginUsername">Username</label>
-    <input type="text" id="loginUsername" name="loginUsername" />
+    @*Login Form*@
+    <h3 style="align-content:center">Login</h3>
     <br />
-    <label for="loginPassword">Password</label>
-    <input type="password" id="loginPassword" name="loginPassword" />
-    <br />
-    <input type="submit" value="Login" class="pure-button pure-button-primary">
-</form>
+    <form asp-action="LoginExecution" asp-controller="Home" method="post" class="pure-form">
+        <label for="loginUsername">Username</label>
+        <input type="text" id="loginUsername" name="loginUsername" />
+        &nbsp;&nbsp;
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" name="loginPassword" />
+        <br /><br />
+        <input type="submit" value="Login" class="btn btn-primary">
+
+        &nbsp;&nbsp;
+        @*Register page anchor*@
+        <button type="button" class="btn btn-primary">
+            <a class="whiteLink "asp-area="" asp-controller="Home" asp-action="Register"> Haven't got an account? Register now! >_></a>
+        </button>
+    </form>
 
 
 
-<br />
-<br />
+  
 
-@*Register page anchor*@
-<a style="display: flex; justify-content: flex-end; text-decoration: none" asp-area="" asp-controller="Home" asp-action="Register"> Haven't got an account? Register now! >_></a>
+    
 
-@*Error divs*@
-@if (ViewBag.loginFailed != null)
-{
-    <div style="color: red">Login credentials are not correct.</div>
-}
+    @*Error divs*@
+    @if (ViewBag.loginFailed != null)
+    {
+        <div style="color: red">Login credentials are not correct.</div>
+    }
+
+</div>

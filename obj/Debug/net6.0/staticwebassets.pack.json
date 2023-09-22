@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\HowsGoingCore.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\F.P.S\\Desktop\\HowsGoingCore\\wwwroot\\css\\JournalThemeBootswatch.css",
+      "PackagePath": "staticwebassets\\css\\JournalThemeBootswatch.css"
+    },
+    {
       "Id": "C:\\Users\\F.P.S\\Desktop\\HowsGoingCore\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

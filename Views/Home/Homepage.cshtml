@@ -13,27 +13,34 @@
 </head>
 
 
+<div class="mainContent">
+    <h3 style="padding-top: 4%">
+        This is what is going on lately:
+    </h3>
 
-<h3 style="padding-top: 20px">
-    This is what is going on lately:
-</h3>
+    <div style="padding: 10%">
+        @*Table with posts*@
+        <table class="table table-hover">
+            <thead>
+                <tr class="table-primary">
+                    <th scope="col">Message</th>
+                    <th scope="col">Satisfaction</th>
+                    <th scope="col">Author</th>
+                </tr>
+            </thead>
 
-<div style="padding: 75px">
-    @*Table with posts*@
-    <table class="pure-table-striped">
-        <tr>
-            <th>Message</th>
-            <th>Satisfaction</th>
-            <th>Author</th>
-        </tr>
-        @*loading records from ViewBag*@
-        @foreach (var record in ViewBag.recordsList)
-        {
-            <tr>
-                <td>@record.RecordContent</td>
-                <td>@record.Satisfaction</td>
-                <td>@record.UserID</td>
-            </tr>
-        }
-    </table>
+            @*loading records from ViewBag*@
+            <tbody>
+                @foreach (var record in ViewBag.recordsList)
+                {
+                    <tr>
+                        <td>@record.RecordContent</td>
+                        <td>@record.Satisfaction</td>
+                        <td>@record.UserID</td>
+                    </tr>
+                }
+            </tbody>
+            
+        </table>
+    </div>
 </div>
