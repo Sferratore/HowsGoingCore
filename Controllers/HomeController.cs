@@ -67,6 +67,11 @@ namespace HowsGoingCore.Controllers
             return View();
         }
 
+        //Logout page
+        public IActionResult Logout()
+        {
+            return RedirectToAction("Login");
+        }
 
         //Login execution method for post request
         [HttpPost]
