@@ -332,7 +332,7 @@ namespace HowsGoingCore.Controllers
 
             //Creation of inverted record of friendship
             Friendship f_ship2 = new Friendship();
-            f_ship2.FriendshipId = _db.Friendship.Any() ? _db.Friendship.Max(r => r.FriendshipId) + 2 : 1;
+            f_ship2.FriendshipId = f_ship1.FriendshipId + 1;
             f_ship2.User2 = HttpContext.Session.GetString("LoggedUser");
             f_ship2.User1 = usertoadd;
 
@@ -364,6 +364,44 @@ namespace HowsGoingCore.Controllers
             ViewBag.friendReqs = friendReqs;
 
             ViewBag.operationFeedback = "Friend added successfully!";
+            return View("Friends");
+        }
+
+
+
+        //Action method to remove a friend in the Friends page.
+        public IActionResult RemoveFriend(string friendUsername)
+        {
+            Friendship friendshipRecordToDelete1 = _db.Friendship.FirstOrDefault(f => f.User1 == friendUsername);
+            Friendship friendshipRecordToDelete2 = _db.Friendship.FirstOrDefault(f => f.User2 == friendUsername);
+
+            if (friendshipRecordToDelete1 == null || friendshipRecordToDelete2 == null)
+            {
+                return Content("An error has occurred with the removal of the friendship. Please refresh the page and try again.");
+            }
+
+            try
+            {
+                _db.Friendship.Remove(friendshipRecordToDelete1);
+                _db.Friendship.Remove(friendshipRecordToDelete2);
+                _db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                return Content("An error has occurred with an operation: " + ex.ToString());
+            }
+
+            //Get user's friends with stored procedure
+            var friendsProcedureResult = _db.Procedures.GetFriendsAsync(HttpContext.Session.GetString("LoggedUser")); //This procedure execution creates a task
+            var friendList = friendsProcedureResult.Result.ToList(); //This method generates the list of results using the task. The type is List<GetFriendsResult> and not List<Friendship>.
+            ViewBag.friendList = friendList;
+
+
+            //Get user's friend requests
+            var friendReqs = _db.Friendrequest.Where(f => f.RequestReceiver == HttpContext.Session.GetString("LoggedUser")).ToList();
+            ViewBag.friendReqs = friendReqs;
+
+            ViewBag.operationFeedback = "Operation completed successfully.";
             return View("Friends");
         }
     }

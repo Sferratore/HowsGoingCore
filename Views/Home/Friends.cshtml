@@ -93,6 +93,7 @@
             <thead>
                 <tr class="table-primary">
                     <th scope="col">Friend's Username</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -100,6 +101,7 @@
                 {
                     <tr>
                         <td>@friend.FRIEND</td>
+                        <td><a asp-controller="Home" asp-action="RemoveFriend" asp-route-friendUsername ="@friend.FRIEND">Remove Friend <i class="bi bi-trash"></i></a></td>
                     </tr>
                 }
             </tbody> 
