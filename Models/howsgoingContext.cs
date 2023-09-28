@@ -92,6 +92,7 @@ public partial class howsgoingContext : DbContext
             entity.Property(e => e.RecordId)
                 .ValueGeneratedNever()
                 .HasColumnName("RecordID");
+            entity.Property(e => e.LastUpdate).HasColumnType("datetime");
             entity.Property(e => e.RecordContent)
                 .HasMaxLength(500)
                 .IsUnicode(false);

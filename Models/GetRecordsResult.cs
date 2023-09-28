@@ -11,5 +11,6 @@ namespace HowsGoingCore.Models
         public string RecordContent { get; set; }
         public int? Satisfaction { get; set; }
         public string UserID { get; set; }
+        public DateTime? LastUpdate { get; set; }
     }
 }

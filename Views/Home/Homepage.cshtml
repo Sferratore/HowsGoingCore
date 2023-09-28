@@ -48,6 +48,10 @@
             {
                 <div class="post-card postStructure @GetSatisfactionColor(record.Satisfaction)">
                     <h4>@record.UserID</h4>
+                    @if(record.LastUpdate != null)
+                    {
+                        <h6>@record.LastUpdate</h6>
+                    }
                     <p>@record.RecordContent</p>
                     <p class="satisfaction float-end">Satisfaction: @record.Satisfaction / 5</p>
                 </div>

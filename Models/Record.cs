@@ -15,5 +15,7 @@ public partial class Record
 
     public string UserId { get; set; }
 
+    public DateTime? LastUpdate { get; set; }
+
     public virtual HowsUser User { get; set; }
 }

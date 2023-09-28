@@ -171,6 +171,7 @@ namespace HowsGoingCore.Controllers
             appendingRecord.RecordContent = message;
             appendingRecord.Satisfaction = satisfaction;
             appendingRecord.UserId = HttpContext.Session.GetString("LoggedUser");
+            appendingRecord.LastUpdate = DateTime.Now;
 
             try
             {
