@@ -3,50 +3,51 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
 </head>
 
+<div class="mainContent">
+    @*Registration Form*@
+    <h3 style="align-content:center">Get into the family!</h3>
 
-@*Registration Form*@
-<h3 style="align-content:center">Get into the family!</h3>
+    <form asp-action="RegistrationExecution" asp-controller="Home" method="post" class="pure-form">
 
-<form asp-action="RegistrationExecution" asp-controller="Home" method="post" class="pure-form">
+        @*Username section*@
+        <label for="registrationUsername">Username</label>
+        <input type="text" id="registrationUsername" name="registrationUsername" />
+        @if (ViewBag.usernameInvalid != null)
+        {
+            <div style="color: red">Username already taken :(</div>
+        }
+        <br />
 
-    @*Username section*@
-    <label for="registrationUsername">Username</label>
-    <input type="text" id="registrationUsername" name="registrationUsername" />
-    @if (ViewBag.usernameInvalid != null)
-    {
-        <div style="color: red">Username already taken :(</div>
-    }
-    <br />
+        @*Password section*@
+        <label for="registrationPassword">Password</label>
+        <input type="password" id="registrationPassword" name="registrationPassword" />
+        <br />
 
-    @*Password section*@
-    <label for="registrationPassword">Password</label>
-    <input type="password" id="registrationPassword" name="registrationPassword" />
-    <br />
+        @*Email section*@
+        <label for="registrationEmail">Email</label>
+        <input type="text" id="registrationEmail" name="registrationEmail" />
+        @if (ViewBag.emailTaken != null)
+        {
+            <div style="color: red">Email already used.</div>
+        }
+        @if (ViewBag.emailNotRegex != null)
+        {
+            <div style="color: red">Email invalid.</div>
+        }
+        <br /><br />
 
-    @*Email section*@
-    <label for="registrationEmail">Email</label>
-    <input type="text" id="registrationEmail" name="registrationEmail" />
-    @if (ViewBag.emailTaken != null)
-    {
-        <div style="color: red">Email already used.</div>
-    }
-    @if (ViewBag.emailNotRegex != null)
-    {
-        <div style="color: red">Email invalid.</div>
-    }
-    <br /><br />
+        @*Register button*@
+        <input type="submit" value="Register">
 
-    @*Register button*@
-    <input type="submit" value="Register">
+        @*General feedback*@
+        @if (ViewBag.nullValues != null)
+        {
+            <div style="color: red">There are one ore more empty fields: please fill them all</div>
+        }
 
-    @*General feedback*@
-    @if (ViewBag.nullValues != null)
-    {
-        <div style="color: red">There are one ore more empty fields: please fill them all</div>
-    }
-
-    @if (ViewBag.registrationSuccess != null)
-    {
-        <div style="color: green">Your registration was successfull!</div>
-    }
-</form>
+        @if (ViewBag.registrationSuccess != null)
+        {
+            <div style="color: green">Your registration was successfull!</div>
+        }
+    </form>
+</div>

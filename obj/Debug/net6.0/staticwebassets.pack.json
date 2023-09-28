@@ -21,6 +21,18 @@
       "PackagePath": "staticwebassets\\howscat.png"
     },
     {
+      "Id": "C:\\Users\\F.P.S\\Desktop\\HowsGoingCore\\wwwroot\\howscat2.png",
+      "PackagePath": "staticwebassets\\howscat2.png"
+    },
+    {
+      "Id": "C:\\Users\\F.P.S\\Desktop\\HowsGoingCore\\wwwroot\\howscat3.png",
+      "PackagePath": "staticwebassets\\howscat3.png"
+    },
+    {
+      "Id": "C:\\Users\\F.P.S\\Desktop\\HowsGoingCore\\wwwroot\\howscat4.png",
+      "PackagePath": "staticwebassets\\howscat4.png"
+    },
+    {
       "Id": "C:\\Users\\F.P.S\\Desktop\\HowsGoingCore\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

@@ -6,12 +6,40 @@
 @using Microsoft.AspNetCore.Http
 
 <div class="mainContent">
-    <h2>Welcome, @Context.Session.GetString("LoggedUser") !</h2>
+    <h2>Welcome, @Context.Session.GetString("LoggedUser") ! ---------------------------------------------------------------------------------------------------</h2>
     <div style="padding: 25px">
         Howsgoing is a project created by me to help you express yourself about anything you like! <br />
         Hope to see you around :-)
         <div style="display: flex; justify-content: flex-end">
             <img style="margin: 10%" src="~/howscat.png" />
         </div>
+    </div>
+
+
+    <h3>Get Started ------------------------------------------------------------------------------------------------------------------------------</h3>
+    <div>
+        <div class="homepageImgLink" style="float:right">
+            <figure>
+                <a asp-area="" asp-controller="Home" asp-action="Postpage">
+                    <img src="~/howscat2.png" />
+                    <figcaption><h4>Post Something</h4></figcaption>
+                </a>
+            </figure>
+            
+        </div>
+        <div class="homepageImgLink">
+            <a asp-area="" asp-controller="Home" asp-action="Homepage">
+                <img src="~/howscat3.png" />
+                <figcaption><h4>Discover your Homepage</h4></figcaption>
+            </a>
+        </div>
+        <div class="homepageImgLink" style="float:right">
+            <a asp-area="" asp-controller="Home" asp-action="Friends">
+                <img src="~/howscat4.png" />
+                <figcaption><h4>Find new Friends</h4></figcaption>
+            </a>
+        </div>
+
+        
     </div>
 </div>

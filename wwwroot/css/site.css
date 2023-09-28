@@ -13,6 +13,14 @@ html {
   min-height: 100%;
 }
 
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: blink;
+}
+
 
 
 .mainContent {
@@ -64,4 +72,8 @@ html {
     background-color: #9CFF96;
 }
 
+.homepageImgLink{
+    margin-bottom:10%;
+    padding: 5%;
+}
 
