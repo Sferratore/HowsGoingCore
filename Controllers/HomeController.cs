@@ -387,8 +387,8 @@ namespace HowsGoingCore.Controllers
         //Action method to remove a friend in the Friends page.
         public IActionResult RemoveFriend(string friendUsername)
         {
-            Friendship friendshipRecordToDelete1 = _db.Friendship.FirstOrDefault(f => f.User1 == friendUsername);
-            Friendship friendshipRecordToDelete2 = _db.Friendship.FirstOrDefault(f => f.User2 == friendUsername);
+            Friendship? friendshipRecordToDelete1 = _db.Friendship.FirstOrDefault(f => f.User1 == friendUsername);
+            Friendship? friendshipRecordToDelete2 = _db.Friendship.FirstOrDefault(f => f.User2 == friendUsername);
 
             if (friendshipRecordToDelete1 == null || friendshipRecordToDelete2 == null)
             {
@@ -424,7 +424,7 @@ namespace HowsGoingCore.Controllers
         //Method of UserPosts used to delete a post.
         public IActionResult DeletePost(int recordId)
         {
-            Record recordToDelete = _db.Record.FirstOrDefault(r => r.RecordId == recordId); //Searching the record
+            Record? recordToDelete = _db.Record.FirstOrDefault(r => r.RecordId == recordId); //Searching the record
 
             if (recordToDelete == null)
             {
@@ -446,6 +446,47 @@ namespace HowsGoingCore.Controllers
             ViewBag.recordsList = recordsList;  //Attaching record list to viewbag
 
             ViewBag.operationFeedback = "Record deleted successfully.";
+            return View("UserPosts");
+        }
+
+
+
+        //Method of UserPosts used to return the edit page.
+        //EditPostPage returns to the page the object Record that we want to edit. It uses the special instruction "@model Record" to fill the form with what is given so it's a little bit different.
+        public IActionResult EditPostPage(int recordId)
+        {
+            Record? recordToEdit = _db.Record.FirstOrDefault(r => r.RecordId == recordId); //Searching the record
+
+            if (recordToEdit == null)
+            {
+                return Content("An error has occurred with the removal of the record. Please refresh the page and try again.");
+            }
+
+            return View(recordToEdit); //Getting at EditPost page with the record to edit that will be injected in "@model Record"
+        }
+
+
+
+        //Method of EditPostPage used to edit post.
+        public IActionResult EditPostAction(Record afterEditRecord)
+        {
+            afterEditRecord.LastUpdate = DateTime.Now; /*Updating the lastupdate date*/
+            try
+            {
+                _db.Record.Update(afterEditRecord);
+                _db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                return Content("An error has occurred with an operation: " + ex.ToString());
+            }
+
+            ViewBag.operationFeedback = "Record edited successfully.";
+
+            var recordsList = _db.Record.Where(r => r.UserId == HttpContext.Session.GetString("LoggedUser")); //Getting user's records
+
+            ViewBag.recordsList = recordsList;  //Attaching record list to viewbag
+
             return View("UserPosts");
         }
     }

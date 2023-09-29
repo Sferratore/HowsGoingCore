@@ -64,6 +64,8 @@
                     <p class="satisfaction float-end">Satisfaction: @record.Satisfaction / 5</p>
                     @*Delete operation on user's post*@
                     <p class="float-start"><a asp-controller="Home" asp-action="DeletePost" asp-route-recordId ="@record.RecordId"><i class="bi bi-trash"></i></a></p>
+                    @*Edit operation on user's post*@
+                    <p class="float-start"><a asp-controller="Home" asp-action="EditPostPage" asp-route-recordId="@record.RecordId"><i class="bi bi-pencil"></i></a></p>
                 </div>
             }
             @*brs to not let footer overlap last post*@

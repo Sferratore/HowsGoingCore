@@ -1,0 +1,36 @@
+﻿@*Page opened from UserPosts to edit a specific post.*@
+
+@model Record
+
+
+@*Page used to post content*@
+
+<head>
+    @*Stylesheet import*@
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+</head>
+
+
+<div class="mainContent">
+    @*Post form*@
+    <form asp-action="EditPostAction" asp-controller="Home" method="post" class="pure-form">
+        @*Post message*@
+        <label asp-for="RecordContent">Heyja! HowsGoing today? :-) Edit your post content:</label>
+        <input asp-for="RecordContent" style="height:100px;width:400px;" type="text"/>
+        <br />
+
+        @*Post satisfaction*@
+        <label asp-for="Satisfaction">Rate your satisfaction from 1 to 5!</label>
+        <input asp-for="Satisfaction" class="form-range w-25 p-3" type="range" min="1" max="5" />
+        <br />
+        <input asp-for="RecordId" hidden />  @*Announcing field to pass it to EditPostAction without letting it be seen by the user*@
+        <input asp-for="UserId" hidden />   @*Announcing field to pass it to EditPostAction without letting it be seen by the user*@
+        <input type="submit" value="Submit" class="pure-button pure-button-primary">
+    </form>
+
+    @*Feedback divs*@
+    @if (ViewBag.recordAdded != null)
+    {
+        <div style="color: green">Your record was inserted successfully! ^_^</div>
+    }
+</div>

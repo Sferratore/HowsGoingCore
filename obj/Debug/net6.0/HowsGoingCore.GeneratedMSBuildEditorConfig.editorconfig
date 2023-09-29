@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\F.P.S\Desktop\HowsGoingCore
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/F.P.S/Desktop/HowsGoingCore/Views/Home/EditPostPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFZGl0UG9zdFBhZ2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/F.P.S/Desktop/HowsGoingCore/Views/Home/Friends.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxGcmllbmRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
