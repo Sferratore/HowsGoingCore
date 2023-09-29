@@ -1,0 +1,110 @@
+﻿@*UserPosts page*@
+
+@using HowsGoingCore.Controllers;
+@using HowsGoingCore.Models;
+@using Microsoft.AspNetCore.Mvc;
+@using System.Data;
+@using System.Diagnostics;
+
+
+<head>
+    @*Stylesheet import*@
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+    <style>
+        /* Custom styles for the post cards */
+        .post-card {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+            .post-card h4 {
+                margin: 0;
+            }
+
+            .post-card p {
+                margin: 0;
+                margin-top: 10px;
+            }
+
+            .post-card .satisfaction {
+                font-weight: bold;
+            }
+    </style>
+</head>
+
+
+
+<body class="d-flex flex-column min-vh-100">
+    <div class="mainContent">
+        <h3 style="padding-top: 1%">
+            Your Posts:
+        </h3>
+
+
+        @*UserPosts page operation feedback*@
+        @if (ViewBag.operationFeedback != null)
+        {
+            <div style="color: midnightblue">@ViewBag.operationFeedback</div>
+        }
+
+
+        <div style="padding: 1%">
+            <!-- Display posts as cards -->
+            @foreach (var record in ViewBag.recordsList)
+            {
+                <div class="post-card postStructure @GetSatisfactionColor(record.Satisfaction)">
+                    <h4>@record.UserId</h4>
+                    @if (record.LastUpdate != null)
+                    {
+                        <h6>@record.LastUpdate</h6>
+                    }
+                    <p>@record.RecordContent</p>
+                    <p class="satisfaction float-end">Satisfaction: @record.Satisfaction / 5</p>
+                    @*Delete operation on user's post*@
+                    <p class="float-start"><a asp-controller="Home" asp-action="DeletePost" asp-route-recordId ="@record.RecordId"><i class="bi bi-trash"></i></a></p>
+                </div>
+            }
+            @*brs to not let footer overlap last post*@
+            <br />
+            <br />
+            <br />
+            <br />
+        </div>
+    </div>
+</body>
+
+
+
+
+@*Function used to associate background color to satisfaction of the post.*@
+@functions {
+    string GetSatisfactionColor(int satisfaction)
+    {
+        if (satisfaction == 1)
+        {
+            return "bgSatisfaction1"; // Use a class for satisfaction 1 background
+        }
+        else if (satisfaction == 2)
+        {
+            return "bgSatisfaction2"; // Use a class for satisfaction 2 background
+        }
+        else if (satisfaction == 3)
+        {
+            return "bgSatisfaction3"; // Use a class for satisfaction 3 background
+        }
+        else if (satisfaction == 4)
+        {
+            return "bgSatisfaction4"; // Use a class for satisfaction 4 background
+        }
+        else if (satisfaction == 5)
+        {
+            return "bgSatisfaction5"; // Use a class for satisfaction 5 background
+        }
+        else
+        {
+            return ""; // Default or no background class
+        }
+    }
+}

@@ -203,6 +203,20 @@ namespace HowsGoingCore.Controllers
         }
 
 
+        //UserPosts page
+        public IActionResult UserPosts()
+        {
+            if (HttpContext.Session.GetString("LoggedUser") == null) //Check if user is logged
+                return View("Login");
+
+            var recordsList = _db.Record.Where(r => r.UserId == HttpContext.Session.GetString("LoggedUser")); //Getting user's records
+
+            ViewBag.recordsList = recordsList;  //Attaching record list to viewbag
+
+            return View();
+        }
+
+
 
 
         //Friends page
@@ -404,6 +418,35 @@ namespace HowsGoingCore.Controllers
 
             ViewBag.operationFeedback = "Operation completed successfully.";
             return View("Friends");
+        }
+
+
+        //Method of UserPosts used to delete a post.
+        public IActionResult DeletePost(int recordId)
+        {
+            Record recordToDelete = _db.Record.FirstOrDefault(r => r.RecordId == recordId); //Searching the record
+
+            if (recordToDelete == null)
+            {
+                return Content("An error has occurred with the removal of the record. Please refresh the page and try again.");
+            }
+
+            try
+            {
+                _db.Record.Remove(recordToDelete);  //Deleting the record
+                _db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                return Content("An error has occurred with an operation: " + ex.ToString());
+            }
+
+            var recordsList = _db.Record.Where(r => r.UserId == HttpContext.Session.GetString("LoggedUser")); //Getting user's records
+
+            ViewBag.recordsList = recordsList;  //Attaching record list to viewbag
+
+            ViewBag.operationFeedback = "Record deleted successfully.";
+            return View("UserPosts");
         }
     }
 
