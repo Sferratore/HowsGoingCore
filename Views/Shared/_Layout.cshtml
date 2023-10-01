@@ -49,7 +49,8 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link text-dark dropdown-toggle" data-bs-toggle="dropdown" asp-area="" asp-controller="Home" asp-action="Friends">@Context.Session.GetString("LoggedUser")</a>
                                 <div class="dropdown-menu" style="">
-                                    <h6 class="dropdown-header">Your profile</h6>
+                                    <h6 class="dropdown-header">Your actions</h6>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="UserProfile">Your Profile</a>
                                     <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="UserPosts">Your Posts</a>
                                     <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Logout">Logout</a>
                                 </div>

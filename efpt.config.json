@@ -32,6 +32,10 @@
          "ObjectType": 0
       },
       {
+         "Name": "[dbo].[DeleteUserData]",
+         "ObjectType": 1
+      },
+      {
          "Name": "[dbo].[GetFriends]",
          "ObjectType": 1
       },

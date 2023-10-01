@@ -1,0 +1,19 @@
+﻿@*Friend page*@
+<head>
+    @*Stylesheet import*@
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+</head>
+
+
+<div class="mainContent">
+    <h2>Your Profile</h2>
+    <p>
+        Username: @ViewBag.profilingUser.Username
+    </p>
+    <p>
+        Email: @ViewBag.profilingUser.Email
+    </p>
+    <button type="button" class="btn btn-outline-danger">
+        <a asp-area="" asp-controller="Home" asp-action="DeleteAccount"> DELETE ACCOUNT</a>
+    </button>
+</div>

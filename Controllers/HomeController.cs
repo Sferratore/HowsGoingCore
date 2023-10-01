@@ -51,6 +51,16 @@ namespace HowsGoingCore.Controllers
             return View();
         }
 
+        //UserProfile page
+        public IActionResult UserProfile()
+        {
+            if (HttpContext.Session.GetString("LoggedUser") == null) //Check if user is logged
+                return View("Login");
+
+            ViewBag.profilingUser = _db.HowsUser.FirstOrDefault(u => u.Username == HttpContext.Session.GetString("LoggedUser"));
+            return View();
+        }
+
 
         //Error method for error page
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -97,11 +107,18 @@ namespace HowsGoingCore.Controllers
 
         //Registration execution method for post request
         [HttpPost]
-        public IActionResult RegistrationExecution(string registrationUsername, string registrationPassword, string registrationEmail)
+        public IActionResult RegistrationExecution(string registrationUsername, string registrationPassword, string registrationPasswordConfirm, string registrationEmail)
         {
             HowsUser? userInDb; //Check for registration input data already existing.
 
             //Check for null fields
+            if (registrationPassword != registrationPasswordConfirm)
+            {
+                ViewBag.failedPasswordConfirmation = true;
+                return View("Register");
+            }
+
+            //Check for right password confirmation
             if (registrationUsername == null || registrationPassword == null || registrationEmail == null)
             {
                 ViewBag.nullValues = true;
@@ -488,6 +505,25 @@ namespace HowsGoingCore.Controllers
             ViewBag.recordsList = recordsList;  //Attaching record list to viewbag
 
             return View("UserPosts");
+        }
+
+
+        //Delete user account
+        public IActionResult DeleteAccount()
+        {
+            try
+            {
+                _db.Procedures.DeleteUserDataAsync(HttpContext.Session.GetString("LoggedUser"));
+                _db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                return Content("An error has occurred with an operation: " + ex.ToString());
+            }
+
+            HttpContext.Session.Clear(); /*Clearing session to avoid overleafing of data*/
+            return View("Login");
+
         }
     }
 

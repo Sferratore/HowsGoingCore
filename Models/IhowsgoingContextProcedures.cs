@@ -12,6 +12,7 @@ namespace HowsGoingCore.Models
 {
     public partial interface IhowsgoingContextProcedures
     {
+        Task<int> DeleteUserDataAsync(string Username, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
         Task<List<GetFriendsResult>> GetFriendsAsync(string username, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
         Task<List<GetRecordsResult>> GetRecordsAsync(string username, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
     }

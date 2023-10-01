@@ -10,44 +10,66 @@
     <form asp-action="RegistrationExecution" asp-controller="Home" method="post" class="pure-form">
 
         @*Username section*@
-        <label for="registrationUsername">Username</label>
-        <input type="text" id="registrationUsername" name="registrationUsername" />
-        @if (ViewBag.usernameInvalid != null)
-        {
-            <div style="color: red">Username already taken :(</div>
-        }
-        <br />
+        <div class="formSection">
+            <label for="registrationUsername">Username</label>
+            <input type="text" id="registrationUsername" name="registrationUsername" />
+            @if (ViewBag.usernameInvalid != null)
+            {
+                <div style="color: red">Username already taken :(</div>
+            }
+            <br />
+        </div>
+        
 
         @*Password section*@
-        <label for="registrationPassword">Password</label>
-        <input type="password" id="registrationPassword" name="registrationPassword" />
-        <br />
+        <div class="formSection">
+            <label for="registrationPassword">Password</label>
+            <input type="password" id="registrationPassword" name="registrationPassword" />
+            <br />
+        </div>
+
+        @*Confirm password section*@  
+        <div class="formSection">
+            <label for="registrationPassword">Confirm password</label>
+            <input type="password" id="registrationPasswordConfirm" name="registrationPasswordConfirm" />
+            <br />
+            @if (ViewBag.failedPasswordConfirmation != null)
+            {
+                <div style="color: red">The confirmation password does not match</div>
+            }
+        </div>
 
         @*Email section*@
-        <label for="registrationEmail">Email</label>
-        <input type="text" id="registrationEmail" name="registrationEmail" />
-        @if (ViewBag.emailTaken != null)
-        {
-            <div style="color: red">Email already used.</div>
-        }
-        @if (ViewBag.emailNotRegex != null)
-        {
-            <div style="color: red">Email invalid.</div>
-        }
-        <br /><br />
+        <div class="formSection">
+            <label for="registrationEmail">Email</label>
+            <input type="text" id="registrationEmail" name="registrationEmail" />
+            @if (ViewBag.emailTaken != null)
+            {
+                <div style="color: red">Email already used.</div>
+            }
+            @if (ViewBag.emailNotRegex != null)
+            {
+                <div style="color: red">Email invalid.</div>
+            }
+            <br /><br />
+        </div>
 
         @*Register button*@
-        <input type="submit" value="Register">
+        <div class="formSection">
+            <input type="submit" value="Register">
+        </div>
 
         @*General feedback*@
-        @if (ViewBag.nullValues != null)
-        {
-            <div style="color: red">There are one ore more empty fields: please fill them all</div>
-        }
+        <div class="formSection">
+            @if (ViewBag.nullValues != null)
+            {
+                <div style="color: red">There are one ore more empty fields: please fill them all</div>
+            }
 
-        @if (ViewBag.registrationSuccess != null)
-        {
-            <div style="color: green">Your registration was successfull!</div>
-        }
+            @if (ViewBag.registrationSuccess != null)
+            {
+                <div style="color: green">Your registration was successfull!</div>
+            }
+        </div>
     </form>
 </div>
