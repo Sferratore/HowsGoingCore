@@ -80,8 +80,7 @@ public partial class howsgoingContext : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false);
             entity.Property(e => e.Password)
-                .HasMaxLength(50)
-                .IsUnicode(false)
+                .HasMaxLength(70)
                 .HasColumnName("password");
         });
 

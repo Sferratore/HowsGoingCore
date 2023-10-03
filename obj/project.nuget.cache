@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "eE/6h5NNF+IajxM1M9BI+1R3+OHgcrSC86C1GibbDAm7RoNAeeeyFzx4imGH2uKKSbYT9c4CRK7z0U+KET9Pdg==",
+  "dgSpecHash": "RH+p5Cf2y/o/2DKtAUK9mLGu4IZHWfodDwzaELispu+rqD3fySbN3052LGsjfi72l5PgTcat2Rsx1KDxAA1gvg==",
   "success": true,
   "projectFilePath": "C:\\Users\\F.P.S\\Desktop\\HowsGoingCore\\HowsGoingCore.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\F.P.S\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\F.P.S\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
+    "C:\\Users\\F.P.S\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\F.P.S\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\F.P.S\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\F.P.S\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

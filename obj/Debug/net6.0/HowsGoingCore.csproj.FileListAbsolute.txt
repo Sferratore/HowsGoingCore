@@ -174,3 +174,4 @@ C:\Users\F.P.S\Desktop\HowsGoingCore\obj\Debug\net6.0\refint\HowsGoingCore.dll
 C:\Users\F.P.S\Desktop\HowsGoingCore\obj\Debug\net6.0\HowsGoingCore.pdb
 C:\Users\F.P.S\Desktop\HowsGoingCore\obj\Debug\net6.0\HowsGoingCore.genruntimeconfig.cache
 C:\Users\F.P.S\Desktop\HowsGoingCore\obj\Debug\net6.0\ref\HowsGoingCore.dll
+C:\Users\F.P.S\Desktop\HowsGoingCore\bin\Debug\net6.0\BCrypt.Net-Next.dll

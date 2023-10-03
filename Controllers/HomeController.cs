@@ -87,9 +87,9 @@ namespace HowsGoingCore.Controllers
         [HttpPost]
         public IActionResult LoginExecution(string loginUsername, string loginPassword)
         {
-            HowsUser? user = _db.HowsUser.FirstOrDefault<HowsUser>(u => u.Username == loginUsername && u.Password == loginPassword);
+            HowsUser? user = _db.HowsUser.FirstOrDefault<HowsUser>(u => u.Username == loginUsername); //Getting user record
 
-            if (user != null)
+            if (user != null && BCrypt.Net.BCrypt.Verify(loginPassword, user.Password)) //Verifyng that user's username exists and that hashed retrieved password is the same as the login inserted one
             {
                 HttpContext.Session.SetString("LoggedUser", loginUsername); /*Adding LoggedUser as session variable to refer to current user*/
             }
@@ -155,7 +155,7 @@ namespace HowsGoingCore.Controllers
             {
                 HowsUser appendingUser = new HowsUser();
                 appendingUser.Username = registrationUsername;
-                appendingUser.Password = registrationPassword;
+                appendingUser.Password = BCrypt.Net.BCrypt.HashPassword(registrationPassword); //Hashing the password to encypt
                 appendingUser.Email = registrationEmail;
 
                 try
