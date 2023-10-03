@@ -12,10 +12,10 @@ namespace HowsGoingCore.Controllers
     {
         //HomeController settings
         private readonly ILogger<HomeController> _logger;
-        private readonly howsgoingContext _db; //Our DbContext
+        private readonly howsgoingContext _db; //Our DbContext in use
 
 
-        //Constructor
+        //Constructor. Requires dbcontext howsgoingContext which gets injected.
         public HomeController(ILogger<HomeController> logger, howsgoingContext db)
         {
             _logger = logger;
@@ -51,15 +51,17 @@ namespace HowsGoingCore.Controllers
             return View();
         }
 
+
         //UserProfile page
         public IActionResult UserProfile()
         {
             if (HttpContext.Session.GetString("LoggedUser") == null) //Check if user is logged
                 return View("Login");
 
-            ViewBag.profilingUser = _db.HowsUser.FirstOrDefault(u => u.Username == HttpContext.Session.GetString("LoggedUser"));
+            ViewBag.profilingUser = _db.HowsUser.FirstOrDefault(u => u.Username == HttpContext.Session.GetString("LoggedUser")); //User data to return
             return View();
         }
+
 
 
         //Error method for error page
@@ -70,6 +72,7 @@ namespace HowsGoingCore.Controllers
         }
 
 
+
         //Login page
         public IActionResult Login()
         {
@@ -77,11 +80,14 @@ namespace HowsGoingCore.Controllers
             return View();
         }
 
+
+
         //Logout page
         public IActionResult Logout()
         {
             return RedirectToAction("Login");
         }
+
 
         //Login execution method for post request
         [HttpPost]
@@ -243,13 +249,10 @@ namespace HowsGoingCore.Controllers
                 return View("Login");
 
             //Get user's friends with stored procedure
-            var friendsProcedureResult = _db.Procedures.GetFriendsAsync(HttpContext.Session.GetString("LoggedUser")); //This procedure execution creates a task
-            var friendList = friendsProcedureResult.Result.ToList(); //This method generates the list of results using the task. The type is List<GetFriendsResult> and not List<Friendship>.
-            ViewBag.friendList = friendList;
+            ViewBag.friendList = getUsersFriends();
 
             //Get user's friend requests
-            var friendReqs = _db.Friendrequest.Where(f => f.RequestReceiver == HttpContext.Session.GetString("LoggedUser")).ToList();
-            ViewBag.friendReqs = friendReqs;
+            ViewBag.friendReqs = getUsersFriendRequests();
 
             return View();
         }
@@ -265,13 +268,10 @@ namespace HowsGoingCore.Controllers
                 return View("Login");
 
             //Get user's friends with stored procedure
-            var friendsProcedureResult = _db.Procedures.GetFriendsAsync(HttpContext.Session.GetString("LoggedUser")); //This procedure execution creates a task
-            var friendList = friendsProcedureResult.Result.ToList(); //This method generates the list of results using the task. The type is List<GetFriendsResult> and not List<Friendship>.
-            ViewBag.friendList = friendList;
+            ViewBag.friendList = getUsersFriends();
 
             //Get user's friend requests 
-            var friendReqs = _db.Friendrequest.Where(f => f.RequestReceiver == HttpContext.Session.GetString("LoggedUser")).ToList();
-            ViewBag.friendReqs = friendReqs;
+            ViewBag.friendReqs = getUsersFriendRequests();
 
 
 
@@ -322,13 +322,10 @@ namespace HowsGoingCore.Controllers
         public IActionResult SendFriendRequest(string usertoadd)
         {
             //Get user's friends with stored procedure
-            var friendsProcedureResult = _db.Procedures.GetFriendsAsync(HttpContext.Session.GetString("LoggedUser")); //This procedure execution creates a task
-            var friendList = friendsProcedureResult.Result.ToList(); //This method generates the list of results using the task. The type is List<GetFriendsResult> and not List<Friendship>.
-            ViewBag.friendList = friendList;
+            ViewBag.friendList = getUsersFriends();
 
             //Get user's friend requests 
-            var friendReqs = _db.Friendrequest.Where(f => f.RequestReceiver == HttpContext.Session.GetString("LoggedUser")).ToList();
-            ViewBag.friendReqs = friendReqs;
+            ViewBag.friendReqs = getUsersFriendRequests();
 
             //Add new friend request
             Friendrequest newFriendreq = new Friendrequest();
@@ -386,14 +383,11 @@ namespace HowsGoingCore.Controllers
             }
 
             //Get user's friends with stored procedure
-            var friendsProcedureResult = _db.Procedures.GetFriendsAsync(HttpContext.Session.GetString("LoggedUser")); //This procedure execution creates a task
-            var friendList = friendsProcedureResult.Result.ToList(); //This method generates the list of results using the task. The type is List<GetFriendsResult> and not List<Friendship>.
-            ViewBag.friendList = friendList;
+            ViewBag.friendList = getUsersFriends();
 
 
             //Get user's friend requests
-            var friendReqs = _db.Friendrequest.Where(f => f.RequestReceiver == HttpContext.Session.GetString("LoggedUser")).ToList();
-            ViewBag.friendReqs = friendReqs;
+            ViewBag.friendReqs = getUsersFriendRequests();
 
             ViewBag.operationFeedback = "Friend added successfully!";
             return View("Friends");
@@ -424,14 +418,11 @@ namespace HowsGoingCore.Controllers
             }
 
             //Get user's friends with stored procedure
-            var friendsProcedureResult = _db.Procedures.GetFriendsAsync(HttpContext.Session.GetString("LoggedUser")); //This procedure execution creates a task
-            var friendList = friendsProcedureResult.Result.ToList(); //This method generates the list of results using the task. The type is List<GetFriendsResult> and not List<Friendship>.
-            ViewBag.friendList = friendList;
+            ViewBag.friendList = getUsersFriends();
 
 
             //Get user's friend requests
-            var friendReqs = _db.Friendrequest.Where(f => f.RequestReceiver == HttpContext.Session.GetString("LoggedUser")).ToList();
-            ViewBag.friendReqs = friendReqs;
+            ViewBag.friendReqs = getUsersFriendRequests();
 
             ViewBag.operationFeedback = "Operation completed successfully.";
             return View("Friends");
@@ -521,10 +512,30 @@ namespace HowsGoingCore.Controllers
                 return Content("An error has occurred with an operation: " + ex.ToString());
             }
 
-            HttpContext.Session.Clear(); /*Clearing session to avoid overleafing of data*/
-            return View("Login");
+            return RedirectToAction("Logout");
 
         }
+
+
+
+        /////////////////PRIVATE METHODS USE FOR CALCULATIONS/////////////////////////////
+
+        //Get user's friends with stored procedure
+        private List<GetFriendsResult> getUsersFriends()
+        {
+            var friendsProcedureResult = _db.Procedures.GetFriendsAsync(HttpContext.Session.GetString("LoggedUser")); //This procedure execution creates a task
+            var friendList = friendsProcedureResult.Result.ToList(); //This method generates the list of results using the task. The type is List<GetFriendsResult> and not List<Friendship>.
+            return friendList;
+        }
+
+        private List<Friendrequest> getUsersFriendRequests()
+        {
+            var friendReqs = _db.Friendrequest.Where(f => f.RequestReceiver == HttpContext.Session.GetString("LoggedUser")).ToList();
+            return friendReqs;
+        }
+
+
+
     }
 
 }
