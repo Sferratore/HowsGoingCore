@@ -38,7 +38,4 @@ The application should now be running on `https://localhost:5001` or `http://loc
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-## License
-
-[MIT License](./LICENSE)
    
